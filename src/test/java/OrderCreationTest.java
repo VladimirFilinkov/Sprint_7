@@ -13,22 +13,20 @@ import java.util.List;
 public class OrderCreationTest {
 
     private final List<String> colorScooter;
-    private final String displayName;
     int track;
     OrdersClient orderClient;
 
-    public OrderCreationTest(List<String> colorScooter, String displayName) {
+    public OrderCreationTest(List<String> colorScooter) {
         this.colorScooter = colorScooter;
-        this.displayName = displayName;
     }
 
-    @Parameterized.Parameters(name = "{1}")
+    @Parameterized.Parameters(name = "{index}: Test with colors: {0}")
     public static Object[][] getOrderCreation() {
         return new Object[][]{
-                {List.of(), "Создаём заказ. Цвет самоката: не выбран"},
-                {List.of("BLACK"), "Создаём заказ. Цвет самоката: чёрный"},
-                {List.of("GREY"), "Создаём заказ. Цвет самоката: серый"},
-                {List.of("BLACK", "GREY"), "Создаём заказ. Цвет самоката: серый и чёрный"},
+                {List.of()}, // Цвет не выбран
+                {List.of("BLACK")}, // Чёрный
+                {List.of("GREY")}, // Серый
+                {List.of("BLACK", "GREY")} // Чёрный и серый
         };
     }
 
